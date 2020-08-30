@@ -1,13 +1,30 @@
 var porcentaje = 0.3;
 
 function listenEvents() {
+
   $(".slider").on("change", function(event) {
     $(".display").text(event.target.value)
     porcentaje = event.target.value / 100
     borrar()
     algoritmo()
   })
+
+  $(".reservar-btn").on("click", function(event){
+    if(confirm("Confirma tus lugares")){
+      txt = "Tus lugares han quedado confirmados"
+    }
+    else{
+      txt = "Se ha cancelado tu reservacion"
+      $(".usuario-reservado-grid").removeClass("usuario-reservado-grid").addClass("usuario-disponible-grid")
+    }
+  })
+
+  $(document).on("click",".usuario-disponible-grid", function(event) {
+    $(this).removeClass("usuario-disponible-grid").addClass("usuario-reservado-grid")
+  })
 }
+
+
 
 function grid() {
   for (i = 1; i <= 11; i++) {
@@ -26,10 +43,10 @@ function borrar() {
   $(".grid-item").children().remove()
 }
 
-function llenaVacios(rows, cols){
-  for(i = 0; i < rows; i++){
-    for(j = 0; j < cols; j++){
-      if!($("#item-" + i + "-" + j).children()){
+function llenaVacios(rows, cols) {
+  for (i = 0; i < rows; i++) {
+    for (j = 0; j < cols; j++) {
+      if ($("#item-" + i + "-" + j).children().length == 0) {
         $("#item-" + i + "-" + j).append("<i class='fas fa-times-circle fa-2x icono-no-disponible-grid'></i>")
       }
     }
@@ -40,19 +57,6 @@ function algoritmo() {
   var rows = 10;
   var cols = 10;
   var k = 0;
-
-  var estadio = [
-    [" _", " _", " _", " _", " _", " _", " _", " _", " _", " _"],
-    [" _", " _", " _", " _", " _", " _", " _", " _", " _", " _"],
-    [" _", " _", " _", " _", " _", " _", " _", " _", " _", " _"],
-    [" _", " _", " _", " _", " _", " _", " _", " _", " _", " _"],
-    [" _", " _", " _", " _", " _", " _", " _", " _", " _", " _"],
-    [" _", " _", " _", " _", " _", " _", " _", " _", " _", " _"],
-    [" _", " _", " _", " _", " _", " _", " _", " _", " _", " _"],
-    [" _", " _", " _", " _", " _", " _", " _", " _", " _", " _"],
-    [" _", " _", " _", " _", " _", " _", " _", " _", " _", " _"],
-    [" _", " _", " _", " _", " _", " _", " _", " _", " _", " _"]
-  ];
 
   var disponibles = [];
   var contNuevo = 0;
@@ -67,8 +71,8 @@ function algoritmo() {
   var contAsientos = 0;
 
   if (salto < 3) {
-    for( i = 0; i < rows; i++){
-      for(j = 0; j < cols; j++){
+    for (i = 0; i < rows; i++) {
+      for (j = 0; j < cols; j++) {
         $("#item-" + i + "-" + j).append("<i class='fas fa-times-circle fa-2x icono-no-disponible-grid'></i>")
       }
     }
@@ -89,7 +93,7 @@ function algoritmo() {
       }
     }
   }
-  llenaVacios(rows, cols, disponibles)
+  llenaVacios(rows, cols);
 
 }
 
