@@ -23,6 +23,10 @@ function listenEvents() {
   $(document).on("click",".usuario-disponible-grid", function(event) {
     $(this).removeClass("usuario-disponible-grid").addClass("usuario-reservado-grid-on")
   })
+
+  $(".hamburger").on("click", function(event){
+    $("#navbarSupportedContent").toggle(1000);
+  })
 }
 
 

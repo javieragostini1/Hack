@@ -25,6 +25,10 @@
   height:10%;
 }
 
+#navbarSupportedContent{
+  text-align: right;
+}
+
 .fas{
   font-size: 30px;
 }
