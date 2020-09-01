@@ -155,6 +155,12 @@ p{
   color: gray;
 }
 
+.usuario-reservado-grid-on{
+  position: absolute;
+  margin: -15px -14px;
+  color: gray;
+}
+
 .icono-no-disponible-grid{
   position: absolute;
   color: red;

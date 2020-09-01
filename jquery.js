@@ -12,15 +12,16 @@ function listenEvents() {
   $(".reservar-btn").on("click", function(event){
     if(confirm("Confirma tus lugares")){
       txt = "Tus lugares han quedado confirmados"
+      $(".usuario-reservado-grid-on").removeClass("usuario-reservado-grid-on").addClass("usuario-reservado-grid")
     }
     else{
       txt = "Se ha cancelado tu reservacion"
-      $(".usuario-reservado-grid").removeClass("usuario-reservado-grid").addClass("usuario-disponible-grid")
+      $(".usuario-reservado-grid-on").removeClass("usuario-reservado-grid-on").addClass("usuario-disponible-grid")
     }
   })
 
   $(document).on("click",".usuario-disponible-grid", function(event) {
-    $(this).removeClass("usuario-disponible-grid").addClass("usuario-reservado-grid")
+    $(this).removeClass("usuario-disponible-grid").addClass("usuario-reservado-grid-on")
   })
 }
 
